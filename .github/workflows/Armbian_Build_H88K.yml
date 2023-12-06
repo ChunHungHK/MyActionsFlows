@@ -36,6 +36,7 @@ jobs:
     - name: Run compile.sh
       working-directory: build
       run: |
+          ./compile.sh \
           BOARD=hinlink-h88k \
           BRANCH=legacy \
           RELEASE=jammy \
