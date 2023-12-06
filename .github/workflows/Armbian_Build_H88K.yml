@@ -23,17 +23,8 @@ jobs:
       run: |
         git clone --depth=1 --branch=main https://github.com/armbian/build
         cd build
-
-    - name: Print Working Directory
-      run: |
         pwd
-
-    - name: Set execute permission on compile.sh
-      run: |
         chmod +x compile.sh
-
-    - name: Run compile.sh
-      run: |
         ./compile.sh \
           BOARD=hinlink-h88k \
           BRANCH=current \
@@ -47,6 +38,6 @@ jobs:
       with:
         files: |
           build/output/images/*
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GHH_CI_TOKEN }}
         release_name: Release ${{ github.run_number }}
         
