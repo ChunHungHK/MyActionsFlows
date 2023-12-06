@@ -1,4 +1,4 @@
-name: Armbian Build
+name: Armbian Build and Release
 
 on:
   push:
@@ -24,9 +24,16 @@ jobs:
         git clone --depth=1 --branch=main https://github.com/armbian/build
         cd build
 
+    - name: Print Working Directory
+      run: |
+        pwd
+
+    - name: Set execute permission on compile.sh
+      run: |
+        chmod +x compile.sh
+
     - name: Run compile.sh
       run: |
-      working-directory: /build
         ./compile.sh \
           BOARD=hinlink-h88k \
           BRANCH=current \
@@ -39,6 +46,8 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          build/output/images/*
+          build/output/images/*.img
+          build/output/images/*.zip
         token: ${{ secrets.GITHUB_TOKEN }}
         release_name: Release ${{ github.run_number }}
+        
