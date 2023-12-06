@@ -46,8 +46,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          build/output/images/*.img
-          build/output/images/*.zip
+          build/output/images/*
         token: ${{ secrets.GITHUB_TOKEN }}
         release_name: Release ${{ github.run_number }}
         
