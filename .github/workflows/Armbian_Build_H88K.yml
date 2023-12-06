@@ -39,8 +39,8 @@ jobs:
           BOARD=hinlink-h88k \
           BRANCH=legacy \
           RELEASE=jammy \
-          BUILD_MINIMAL=yes \
-          BUILD_DESKTOP=no \
+          BUILD_MINIMAL=no \
+          BUILD_DESKTOP=yes \
           KERNEL_CONFIGURE=no
 
     - name: Generate release tag
