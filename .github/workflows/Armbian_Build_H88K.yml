@@ -22,8 +22,19 @@ jobs:
     - name: Clone Armbian repository
       run: |
         git clone --depth=1 --branch=main https://github.com/armbian/build /
+        cd build
+
+    - name: Print Working Directory
+      run: |
+        pwd
+
+    - name: Set execute permission on compile.sh
+      run: |
         chmod +x compile.sh
-        ./compile.sh \
+
+    - name: Run compile.sh
+      working-directory: build
+      run: |
           BOARD=hinlink-h88k \
           BRANCH=current \
           RELEASE=jammy \
