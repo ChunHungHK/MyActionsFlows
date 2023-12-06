@@ -49,12 +49,12 @@ jobs:
         echo "::set-output name=release_tag::UserBuild_$(date +"%Y.%m.%d_%H-%M")"
 
     - name: Upload release artifacts
-      #working-directory: build/output/images/
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
+        working-directory: build/output/images
         files: |
-          build/output/images/*
+          /*
         token: ${{ secrets.GHH_CI_TOKEN }}
         release_name: Release ${{ github.run_number }}
         
