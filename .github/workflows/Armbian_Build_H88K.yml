@@ -23,14 +23,13 @@ jobs:
       run: |
         git clone --depth=1 --branch=main https://github.com/armbian/build /
         cd build
-        ls -la
 
     - name: Print Working Directory
       run: |
         pwd
-        ls -la
 
     - name: Set execute permission on compile.sh
+      working-directory: build
       run: |
         ls -la
         chmod +x compile.sh
