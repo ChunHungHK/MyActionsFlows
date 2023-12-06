@@ -22,10 +22,10 @@ jobs:
     - name: Clone Armbian repository
       run: |
         git clone --depth=1 --branch=main https://github.com/armbian/build
-        cd build
 
     - name: Run compile.sh
       run: |
+        cd build
         ./compile.sh \
           BOARD=hinlink-h88k \
           BRANCH=current \
