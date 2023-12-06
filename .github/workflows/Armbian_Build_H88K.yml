@@ -24,15 +24,6 @@ jobs:
         git clone --depth=1 --branch=main https://github.com/armbian/build
         cd build
 
-    - name: Print Working Directory
-      run: |
-        pwd
-
-    - name: Print list
-      working-directory: build
-      run: |
-        ls -la
-
     - name: Run compile.sh
       working-directory: build
       run: |
@@ -47,14 +38,14 @@ jobs:
     - name: Generate release tag
       id: tag
       run: |
-        echo "TestingScriptBuild ::set-output name=release_tag::UserBuild_$(date +"%Y.%m.%d_%H-%M")"
+        echo "::set-output name=release_tag::UserBuild_$(date +"%Y.%m.%d_%H-%M")"
     - name: Upload release artifacts
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
-        working-directory: build/output/images
+        working-directory: build/output
         files: |
-          /*
+          *.*
         token: ${{ secrets.GHH_CI_TOKEN }}
         release_name: Release ${{ github.run_number }}
         
