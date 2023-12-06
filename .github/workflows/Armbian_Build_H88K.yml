@@ -21,9 +21,7 @@ jobs:
 
     - name: Clone Armbian repository
       run: |
-        git clone --depth=1 --branch=main https://github.com/armbian/build
-        cd build
-        pwd
+        git clone --depth=1 --branch=main https://github.com/armbian/build /
         chmod +x compile.sh
         ./compile.sh \
           BOARD=hinlink-h88k \
