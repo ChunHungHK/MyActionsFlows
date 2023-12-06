@@ -1,0 +1,43 @@
+name: Armbian Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install git
+
+    - name: Clone Armbian repository
+      run: |
+        git clone --depth=1 --branch=main https://github.com/armbian/build
+        cd build
+
+    - name: Run compile.sh
+      run: |
+        ./compile.sh \
+          BOARD=hinlink-h88k \
+          BRANCH=current \
+          RELEASE=jammy \
+          BUILD_MINIMAL=yes \
+          BUILD_DESKTOP=no \
+          KERNEL_CONFIGURE=no
+
+    - name: Upload release artifacts
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          build/output/images/*
+        token: ${{ secrets.GITHUB_TOKEN }}
+        release_name: Release ${{ github.run_number }}
