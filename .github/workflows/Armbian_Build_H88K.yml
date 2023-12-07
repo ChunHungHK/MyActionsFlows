@@ -32,7 +32,8 @@ jobs:
           BRANCH=legacy \
           RELEASE=jammy \
           BUILD_MINIMAL=yes \
-          BUILD_DESKTOP=no \
+          BUILD_DESKTOP=yes \
+          KERNEL_TARGET="legacy,edge,collabora"
           KERNEL_CONFIGURE=no
 
     - name: Packfiles
@@ -52,11 +53,15 @@ jobs:
         path: |
           build/pack_images.tar.gz
           
+    - name: Generate release tag
+      id: tag
+      run: |
+        echo "name=release_tag::UserBuild_$(date +"%Y.%m.%d_%H-%M")" >> $GITHUB_OUTPUT
         
     - name: Upload release artifacts
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
       with:
+        tag_name: ${{ steps.tag.outputs.release_tag }}
         files: |
           build/output/images/*.img
           build/*.tar.gz
