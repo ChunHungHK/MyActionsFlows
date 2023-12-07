@@ -33,7 +33,7 @@ jobs:
           RELEASE=jammy \
           BUILD_MINIMAL=yes \
           BUILD_DESKTOP=yes \
-          KERNEL_TARGET="legacy,edge,collabora"
+          KERNEL_TARGET="legacy,edge,collabora" \
           KERNEL_CONFIGURE=no
 
     - name: Packfiles
