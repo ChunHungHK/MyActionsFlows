@@ -24,7 +24,7 @@ jobs:
         git clone --depth=1 --branch=main https://github.com/armbian/build
         cd build
 
-    - name: Run compile.sh
+    - name: Run compile.sh T1
       working-directory: build
       run: |
           ./compile.sh \
@@ -32,8 +32,22 @@ jobs:
           BRANCH=legacy \
           RELEASE=jammy \
           BUILD_MINIMAL=yes \
+          BUILD_DESKTOP=no \
+          KERNEL_TARGET="legacy,edge,collabora" \
+          KERNEL_TEST_TARGET="edge,collabora" \
+          KERNEL_CONFIGURE=no
+
+    - name: Run compile.sh T2
+      working-directory: build
+      run: |
+          ./compile.sh \
+          BOARD=hinlink-h88k \
+          BRANCH=legacy \
+          RELEASE=jammy \
+          BUILD_MINIMAL=no \
           BUILD_DESKTOP=yes \
           KERNEL_TARGET="legacy,edge,collabora" \
+          KERNEL_TEST_TARGET="edge,collabora" \
           KERNEL_CONFIGURE=no
 
     - name: Packfiles
