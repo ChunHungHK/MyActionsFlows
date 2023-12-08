@@ -34,7 +34,7 @@ jobs:
           BUILD_MINIMAL=yes \
           BUILD_DESKTOP=no \
           KERNEL_TARGET="legacy,edge,collabora" \
-          KERNEL_TEST_TARGET="edge,collabora" \
+          #KERNEL_TEST_TARGET="edge,collabora" \
           KERNEL_CONFIGURE=no
 
     - name: Run compile.sh T2
@@ -47,7 +47,7 @@ jobs:
           BUILD_MINIMAL=no \
           BUILD_DESKTOP=yes \
           KERNEL_TARGET="legacy,edge,collabora" \
-          KERNEL_TEST_TARGET="edge,collabora" \
+          #KERNEL_TEST_TARGET="edge,collabora" \
           KERNEL_CONFIGURE=no
 
     - name: Packfiles
