@@ -33,28 +33,18 @@ jobs:
           RELEASE=jammy \
           BUILD_MINIMAL=yes \
           BUILD_DESKTOP=no \
-          KERNEL_TARGET="legacy,edge,collabora" \
-          KERNEL_CONFIGURE=no
-
-    - name: Run compile.sh T2
-      working-directory: build
-      run: |
-          ./compile.sh \
-          BOARD=hinlink-h88k \
-          BRANCH=legacy \
-          RELEASE=jammy \
-          BUILD_MINIMAL=no \
-          BUILD_DESKTOP=yes \
-          KERNEL_TARGET="legacy,edge,collabora" \
+          KERNEL_TARGET="legacy" \
           KERNEL_CONFIGURE=no
 
     - name: Packfiles
       working-directory: build
       run: |
-          tar -czvf pack_images.tar.gz ./output/images/*.img
-          #tar -czvf pack_output.tar.gz ./output/
+          #tar -czvf pack_images.tar.gz ./output/images/*.img
+          tar -czvf armbian_output.tar.gz ./armbian/output/
+          tar -czvf pack_output.tar.gz ./output/
           mkdir dl_output
           #mv pack_images.tar.gz ./up_output/
+          #mv armbian_output.tar.gz ./up_output/
           #mv pack_output.tar.gz ./up_output/
           
 
@@ -63,6 +53,7 @@ jobs:
       with:
         name: Pack_Output
         path: |
+          build/armbian_output.tar.gz
           build/pack_images.tar.gz
           
     - name: Generate release tag
@@ -77,5 +68,4 @@ jobs:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         files: |
           build/output/images/*.img
-          build/*.tar.gz
         token: ${{ secrets.GHH_CI_TOKEN }}
