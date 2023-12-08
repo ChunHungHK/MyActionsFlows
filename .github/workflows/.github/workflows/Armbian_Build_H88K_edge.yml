@@ -1,4 +1,4 @@
-name: Armbian Build and Release -edge
+name: Armbian Build and Release Eedge
 
 on:
   push:
