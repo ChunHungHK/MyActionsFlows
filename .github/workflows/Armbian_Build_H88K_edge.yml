@@ -21,7 +21,7 @@ jobs:
 
     - name: Clone Armbian repository
       run: |
-        git clone --depth=1 --branch=main https://github.com/armbian/build
+        git clone --depth=1 --branch=main https://github.com/ChunHungHK/Armbian_build
         cd build
 
     - name: Run compile.sh
