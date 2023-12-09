@@ -39,11 +39,9 @@ jobs:
       working-directory: build
       run: |
           #tar -czvf pack_images.tar.gz ./output/images/*.img
-          tar -czvf armbian_output.tar.gz ./armbian/output/
           tar -czvf pack_output.tar.gz ./output/
           mkdir dl_output
           #mv pack_images.tar.gz ./up_output/
-          #mv armbian_output.tar.gz ./up_output/
           #mv pack_output.tar.gz ./up_output/
           
 
@@ -52,7 +50,6 @@ jobs:
       with:
         name: Pack_Output
         path: |
-          build/armbian_output.tar.gz
           build/pack_images.tar.gz
           
     - name: Generate release tag
