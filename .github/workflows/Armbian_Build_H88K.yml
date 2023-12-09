@@ -50,7 +50,7 @@ jobs:
       with:
         name: Pack_Output
         path: |
-          build/pack_images.tar.gz
+          build/pack_output.tar.gz
           
     - name: Generate release tag
       id: tag
