@@ -42,7 +42,6 @@ jobs:
           tar -czvf pack_output.tar.gz ./output/
           mkdir dl_output
           #mv pack_images.tar.gz ./up_output/
-          #mv armbian_output.tar.gz ./up_output/
           #mv pack_output.tar.gz ./up_output/
           
 
