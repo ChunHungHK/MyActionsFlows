@@ -36,7 +36,7 @@ jobs:
     - name: Packfiles
       working-directory: Armbian_build
       run: |
-        tar -czvf pack_images.tar.gz ./output/images/*.img
+        tar -cvf pack_images.tar /output/images/*.img
 
     - name : Upload action artifact
       uses: actions/upload-artifact@master
@@ -56,6 +56,5 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         files: |
-          Armbian_build/output/images/*.img
-          Armbian_build/pack_images.tar.gz
+          Armbian_build/pack_images.tar
         token: ${{ secrets.GHH_CI_TOKEN }}
