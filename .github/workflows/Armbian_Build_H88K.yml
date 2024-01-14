@@ -1,9 +1,6 @@
-name: Armbian Build and Release
+name: Armbian Build and Release Eedge
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -22,36 +19,31 @@ jobs:
 
     - name: Clone Armbian repository
       run: |
-        git clone --depth=1 --branch=main https://github.com/armbian/build
-        cd build
+        git clone --depth=1 --branch=main https://github.com/ChunHungHK/Armbian_build
+        cd Armbian_build
 
     - name: Run compile.sh
-      working-directory: build
+      working-directory: Armbian_build
       run: |
           ./compile.sh \
           BOARD=hinlink-h88k \
-          BRANCH=legacy \
+          BRANCH=edge \
           RELEASE=jammy \
           BUILD_MINIMAL=yes \
           BUILD_DESKTOP=no \
           KERNEL_CONFIGURE=no
 
     - name: Packfiles
-      working-directory: build
+      working-directory: Armbian_build
       run: |
-          #tar -czvf pack_images.tar.gz ./output/images/*.img
-          tar -czvf pack_output.tar.gz ./output/
-          mkdir dl_output
-          #mv pack_images.tar.gz ./up_output/
-          #mv pack_output.tar.gz ./up_output/
-          
+        tar -czvf pack_images.tar.gz ./output/images/*.img
 
     - name : Upload action artifact
       uses: actions/upload-artifact@master
       with:
         name: Pack_Output
         path: |
-          build/pack_output.tar.gz
+          Armbian_build/output/
           
     - name: Generate release tag
       id: tag
@@ -64,5 +56,6 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         files: |
-          build/output/images/*.img
+          Armbian_build/output/images/*.img
+          Armbian_build/pack_images.tar.gz
         token: ${{ secrets.GHH_CI_TOKEN }}
