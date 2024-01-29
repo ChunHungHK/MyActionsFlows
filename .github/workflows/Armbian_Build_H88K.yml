@@ -31,7 +31,7 @@ jobs:
           ./compile.sh \
           BOARD=hinlink-h88k \
           BRANCH=edge \
-          RELEASE=noble \
+          RELEASE=jammy \
           BUILD_MINIMAL=yes \
           BUILD_DESKTOP=yes \
           KERNEL_CONFIGURE=no
@@ -51,7 +51,7 @@ jobs:
     - name: Generate release tag
       id: tag
       run: |
-        echo "::set-output name=release_tag::UserBuild-h88k-noble_$(date +"%Y.%m.%d_%H-%M")"
+        echo "::set-output name=release_tag::UserBuild-h88k-jammy_$(date +"%Y.%m.%d_%H-%M")"
         
     - name: Upload release artifacts
       uses: softprops/action-gh-release@v1
