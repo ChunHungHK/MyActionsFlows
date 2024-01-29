@@ -39,7 +39,8 @@ jobs:
     - name: Packfiles
       working-directory: Armbian_build
       run: |
-        tar -cvf pack_images.tar /output/images/*.img
+        #tar -cvf pack_output.tar /output/*
+        tar -cvf pack_images.tar /output/images/*
 
     - name : Upload action artifact
       uses: actions/upload-artifact@master
