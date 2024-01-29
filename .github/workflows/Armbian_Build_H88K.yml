@@ -36,7 +36,7 @@ jobs:
           BOARD=hinlink-h88k \
           BRANCH=edge \
           RELEASE=jammy \
-          BUILD_MINIMAL=yes \
+          BUILD_MINIMAL=no \
           BUILD_DESKTOP=yes \
           KERNEL_CONFIGURE=no
 
@@ -50,7 +50,7 @@ jobs:
     - name: Packfiles
       working-directory: Armbian_build
       run: |
-        tar -cvf pack_images.tar /output/images/*
+        tar -cvf pack_images.tar /output/images/
           
     - name: Generate release tag
       id: tag
