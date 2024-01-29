@@ -36,18 +36,17 @@ jobs:
           BUILD_DESKTOP=yes \
           KERNEL_CONFIGURE=no
 
-    - name: Packfiles
-      working-directory: Armbian_build
-      run: |
-        #tar -cvf pack_output.tar /output/*
-        tar -cvf pack_images.tar /output/images/*
-
     - name : Upload action artifact
       uses: actions/upload-artifact@master
       with:
         name: Pack_Output
         path: |
           Armbian_build/output/
+
+    - name: Packfiles
+      working-directory: Armbian_build
+      run: |
+        tar -cvf pack_images.tar /output/images/*
           
     - name: Generate release tag
       id: tag
