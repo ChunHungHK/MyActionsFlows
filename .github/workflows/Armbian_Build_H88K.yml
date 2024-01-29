@@ -36,9 +36,8 @@ jobs:
           BOARD=hinlink-h88k \
           BRANCH=edge \
           RELEASE=jammy \
-          BUILD_MINIMAL=no \
-          BUILD_DESKTOP=yes \
-          DESKTOP_TARGET="jammy:edge" \
+          BUILD_MINIMAL=yes \
+          BUILD_DESKTOP=no \
           KERNEL_CONFIGURE=no
 
     - name : Upload action artifact
