@@ -38,6 +38,7 @@ jobs:
           RELEASE=jammy \
           BUILD_MINIMAL=no \
           BUILD_DESKTOP=yes \
+          DESKTOP_TARGET="jammy:edge" \
           KERNEL_CONFIGURE=no
 
     - name : Upload action artifact
