@@ -50,7 +50,7 @@ jobs:
     - name: Packfiles
       working-directory: Armbian_build
       run: |
-        tar -cvf pack_images.tar /output/images/
+        tar -cvf pack_images.tar /output/images
           
     - name: Generate release tag
       id: tag
