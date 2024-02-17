@@ -36,8 +36,11 @@ jobs:
           BOARD=hinlink-h88k \
           BRANCH=edge \
           RELEASE=jammy \
-          BUILD_MINIMAL=yes \
-          BUILD_DESKTOP=no \
+          BUILD_MINIMAL=no \
+          BUILD_DESKTOP=yes \
+          DESKTOP_BETA_TARGET="jammy:edge" \
+          COMPRESS_OUTPUTIMAGE="sha,gz" \
+          REPOSITORY_INSTALL=armbian-desktop \
           KERNEL_CONFIGURE=no
 
     - name : Upload action artifact
