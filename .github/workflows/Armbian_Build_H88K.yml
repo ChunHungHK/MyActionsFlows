@@ -36,9 +36,7 @@ jobs:
           BOARD=hinlink-h88k \
           BRANCH=edge \
           RELEASE=jammy \
-          BUILD_MINIMAL=no \
-          BUILD_DESKTOP=yes \
-          DESKTOP_BETA_TARGET="jammy:edge" \
+          BUILD_MINIMAL=yes \
           COMPRESS_OUTPUTIMAGE="sha,gz" \
           REPOSITORY_INSTALL=armbian-desktop \
           KERNEL_CONFIGURE=no
